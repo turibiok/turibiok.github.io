@@ -46,7 +46,58 @@ p{margin:0}
 /* Bandeau d'identité + scène 3D */
 .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border-bottom:1px solid var(--rule)}
 .id{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;padding:24px 22px;align-items:start;align-content:start}
-.id img{width:104px;height:128px;object-fit:cover;border-radius:3px;border:1px solid var(--rule)}
+.id img{width:150px;height:184px;object-fit:cover;border-radius:4px;border:1px solid var(--rule);box-shadow:0 0 0 4px var(--sheet),0 0 0 5px var(--giemsa)}
+
+/* Barre de navigation */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule);margin:-28px 0 22px}
+.topbar-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:18px;padding-block:10px;position:relative}
+.brand{display:grid;text-decoration:none;color:var(--ink);line-height:1.15;margin-right:auto}
+.brand b{font-family:var(--f-display);font-size:1.08rem}
+.brand span{font-family:var(--f-mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--giemsa)}
+#menu{display:flex;gap:4px}
+#menu a{color:var(--ink);text-decoration:none;font-size:.92rem;padding:6px 10px;border-radius:3px}
+#menu a:hover{background:var(--range)}
+.tb-actions{display:flex;gap:6px}
+.tb-actions button{display:grid;place-items:center;width:36px;height:36px;background:var(--sheet);color:var(--ink);border:1px solid var(--rule);border-radius:3px;cursor:pointer}
+.tb-actions svg{width:18px;height:18px}
+#menu-btn{display:none!important}
+section[id]{scroll-margin-top:76px}
+
+/* Expérience */
+.xp-list{display:grid;gap:12px;position:relative;padding-left:26px}
+.xp-list::before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--rule)}
+.xp{position:relative;padding:16px 20px;display:grid;gap:8px;transition:border-color .2s}
+.xp-dot{position:absolute;left:-25px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--sheet);border:2px solid var(--methylene)}
+.xp.now .xp-dot{background:var(--giemsa);border-color:var(--giemsa);box-shadow:0 0 0 4px var(--giemsa-soft)}
+.xp.lit{border-color:var(--giemsa)}
+.xp-head{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.xp h3{font-size:1.14rem}
+.xp-org{color:var(--methylene);font-weight:700;font-size:.95rem;margin-top:2px}
+.xp-type{font-family:var(--f-mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border:1px solid var(--rule);border-radius:2px;padding:2px 7px;white-space:nowrap}
+.xp.now .xp-type{color:var(--giemsa);border-color:var(--giemsa);background:var(--giemsa-soft)}
+.xp-meta{display:flex;flex-wrap:wrap;gap:4px 18px;color:var(--muted)}
+.xp ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:.94rem}
+
+/* Formulaire */
+.msg{grid-column:1 / -1;display:grid;gap:10px;border-top:1px solid var(--rule);padding-top:18px}
+.msg h3{font-size:1.1rem}
+.msg-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.msg label{display:grid;gap:4px;font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.msg input,.msg textarea{font:inherit;font-family:var(--f-body);font-size:.98rem;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:9px 11px;width:100%}
+.msg input:focus,.msg textarea:focus{outline:2px solid var(--focus);outline-offset:1px}
+.msg [aria-invalid="true"]{border-color:var(--giemsa)}
+.msg-actions{display:flex;flex-wrap:wrap;gap:8px}
+.msg-actions button{font:inherit;font-family:var(--f-display);font-weight:500;padding:9px 16px;border-radius:3px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer}
+.msg-actions button.main{background:var(--methylene);border-color:var(--methylene);color:var(--sheet)}
+.msg-note{font-size:.86rem;color:var(--muted)}
+@media (max-width:760px){
+  #menu-btn{display:grid!important}
+  #menu{display:none;position:absolute;right:0;top:100%;flex-direction:column;background:var(--sheet);border:1px solid var(--rule);border-radius:4px;padding:6px;min-width:190px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+  #menu.open{display:flex}
+  .msg-row{grid-template-columns:1fr}
+  .xp-head{flex-direction:column;gap:6px}
+}
 .id h1{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:700;letter-spacing:-.01em}
 .post{margin-top:10px;display:grid;gap:4px}
 .post b{font-family:var(--f-display);font-weight:700;font-size:1.12rem;color:var(--methylene);line-height:1.25}
@@ -185,7 +236,7 @@ p{margin:0}
 @media (max-width:560px){
   .grid{grid-template-columns:1fr}
   .id{grid-template-columns:1fr}
-  .id img{width:84px;height:104px}
+  .id img{width:120px;height:148px}
   .keys{grid-template-columns:repeat(2,minmax(0,1fr))}
   .keys div{border-right:0!important;border-bottom:1px solid var(--rule)}
   .fields{grid-template-columns:1fr}
@@ -207,6 +258,22 @@ html{scroll-behavior:smooth}
 
 </head>
 <body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#nom"><b>Turibio KEKE</b><span>Conseiller technique IA</span></a>
+    <nav id="menu" aria-label="Sections de la page">
+      <a href="#competences">Compétences</a>
+      <a href="#examens">Projets</a>
+      <a href="#experience">Expérience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="tb-actions">
+      <button id="theme" type="button" aria-label="Passer en thème sombre ou clair"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+      <button id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
 <main class="wrap">
 
   <!-- Bandeau d'identification -->
@@ -262,7 +329,7 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- Résultats -->
-  <section aria-labelledby="t-resultats" style="display:grid;gap:14px">
+  <section aria-labelledby="t-resultats" style="display:grid;gap:14px" id="competences">
     <div class="results-intro">
       <div>
         <span class="label">Résultats</span>
@@ -308,10 +375,22 @@ html{scroll-behavior:smooth}
     <div class="grid" id="exams"></div>
   </section>
 
-  <!-- Antécédents -->
+  <!-- Expérience -->
+  <section aria-labelledby="t-experience" style="display:grid;gap:14px" id="experience">
+    <div class="results-intro">
+      <div>
+        <span class="label">Antécédents</span>
+        <h2 id="t-experience">Expérience professionnelle</h2>
+      </div>
+      <p style="color:var(--muted);max-width:52ch">Du poste actuel au plus ancien : administration, entrepreneuriat, enseignement et recherche biomédicale.</p>
+    </div>
+    <div class="xp-list" id="xp-list"></div>
+  </section>
+
+  <!-- Formation -->
   <section class="sheet" aria-labelledby="t-antecedents">
-    <div class="sheet-head"><span class="label">Antécédents</span><span class="label">Parcours, du plus récent au plus ancien</span></div>
-    <div style="padding:20px 22px 0"><h2 id="t-antecedents">Parcours et distinctions</h2></div>
+    <div class="sheet-head"><span class="label">Formation</span><span class="label">Diplômes, distinctions, communications</span></div>
+    <div style="padding:20px 22px 0"><h2 id="t-antecedents">Formation et distinctions</h2></div>
     <div class="history" id="history"></div>
   </section>
 
@@ -352,7 +431,7 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- Contact -->
-  <section class="sheet" aria-labelledby="t-contact">
+  <section class="sheet" aria-labelledby="t-contact" id="contact">
     <div class="sheet-head"><span class="label">Prescripteur</span><span class="label">Vous</span></div>
     <div class="contact">
       <div>
@@ -367,6 +446,20 @@ html{scroll-behavior:smooth}
         <dt>GitHub</dt><dd><a href="https://github.com/turibiok">github.com/turibiok</a></dd>
         <dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/turibio-keke">linkedin.com/in/turibio-keke</a></dd>
       </dl>
+      <form class="msg" id="msg" novalidate>
+        <h3>Envoyer un message</h3>
+        <div class="msg-row">
+          <label for="m-name">Nom<input id="m-name" name="name" autocomplete="name" required></label>
+          <label for="m-mail">E-mail<input id="m-mail" name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <label for="m-subject">Objet<input id="m-subject" name="subject" required></label>
+        <label for="m-body">Message<textarea id="m-body" name="body" rows="5" required></textarea></label>
+        <div class="msg-actions">
+          <button type="submit" data-via="mail" class="main">Envoyer par e-mail</button>
+          <button type="submit" data-via="wa">Envoyer par WhatsApp</button>
+        </div>
+        <p class="msg-note" id="msg-note" aria-live="polite">Le message s'ouvre déjà rédigé dans votre messagerie ou dans WhatsApp ; il ne part qu'après votre validation.</p>
+      </form>
     </div>
   </section>
 
@@ -404,31 +497,41 @@ html{scroll-behavior:smooth}
   const CATS = [["all","Tous"],["ia","IA"],["bio","Biomédical"],["robot","Robotique"],["edu","Éducation"],["plat","Plateformes"]];
 
   /* ---------- Parcours ---------- */
-  const H = [
-    ["2026",[
-      ["ministere","Conseiller technique à l'intelligence artificielle, ministère du Commerce intérieur, en charge de la Formalisation de l'Économie","nommé en Conseil des ministres le 4 novembre 2026",true],
-      ["tournee","Formateur-consultant IA et robotique, Sèmè City","tournée des 77 communes du Bénin, depuis avril"],
-      ["cotonou","Formateur IA et robotique, Cotonou AI Academy","Mairie de Cotonou, août"],
-      [null,"1re place, Hackathon e-Santé · 3e place, Prediction Game","DIU e-Santé · Deep Learning Indaba, Lagos"]]],
-    ["2025",[
-      ["ifri","Enseignant en maintenance des appareils électroniques, IFRI, Université d'Abomey-Calavi","depuis 2025"],
-      ["epitech","Sensei (coach technique), Digital Valley, Epitech Bénin",""],
-      ["tekbot","Mentor IT, Tekbot Robotics Challenge 2025",""],
-      [null,"Deux communications à l'ICEHTMC 2025 · Deep Learning Indaba, Kigali",""]]],
-    ["2024",[
-      ["mtk","Fondateur, MTK","pôles MedTech Innovation et SIKA Education, depuis avril"],
-      ["eroye","Chef de projet digital et IT, EROYE SAS","depuis octobre"],
-      [null,"BenRover24 avec Tekbot Robotics · First Lego League, 2e place nationale · Deep Learning Indaba, Dakar",""]]],
-    ["2023",[
-      ["ego","Chef de projet IT, développeur et ingénieur d'exploitation, EGO Technologie","avril 2023 à mai 2024"],
-      ["formateur","Enseignant formateur et ingénieur Data/IA","Sèmè City, AUF, ESGIS, ESGT, GBM-EPAC, depuis 2023"]]],
-    ["2021",[["techno229","Cofondateur et directeur informatique, Techno 229","janvier 2021 à mars 2023"]]],
-    ["2020",[["gbm","Assistant de recherche et chef de parc informatique bénévole, Génie biomédical, EPAC","depuis septembre 2020 : respirateur Health4life, surveillance des constantes vitales"]]],
-    ["2022",[[null,"Master professionnel, Système informatique et logiciel, ESTAG","félicitations du jury · mémoire sur l'IA et la pneumonie"]]],
-    ["2019",[[null,"Licence, Système informatique et logiciel","Université Les Cours Sonou"]]],
+  /* Expérience : [id, poste, structure, période, lieu, type, réalisations, actuel] */
+  const EXP = [
+    ["ministere","Conseiller technique à l'intelligence artificielle","Ministère du Commerce intérieur, en charge de la Formalisation de l'Économie","Depuis nov. 2026","Cotonou, Bénin","Fonction publique",
+      ["Nommé en Conseil des ministres le 4 novembre 2026.","Conseil du ministère sur l'intelligence artificielle."],true],
+    ["tournee","Formateur-consultant IA et robotique","Sèmè City, tournée des 77 communes","Depuis avr. 2026","Bénin, 77 communes","Consultant",
+      ["Ateliers d'initiation à l'IA et à la robotique pour élèves et enseignants dans toutes les communes du pays.","Responsable de l'initiative Young in AI : clubs, ateliers et documentaire."]],
+    ["cotonou","Formateur IA et robotique","Cotonou AI Academy, Mairie de Cotonou","Août 2026","Cotonou, Bénin","Mission",
+      ["Formation de la cohorte 2026 à l'IA et à la robotique.","Accompagnement de projets d'élèves, dont l'assistant scolaire Vision AI."]],
+    ["ifri","Enseignant","IFRI, Université d'Abomey-Calavi","Depuis 2025","Abomey-Calavi, Bénin","Enseignement",
+      ["Cours de maintenance des appareils électroniques.","Pédagogie active et classes inversées."]],
+    ["epitech","Sensei (coach technique)","Digital Valley, Epitech Bénin","2025","Cotonou, Bénin","Coaching",
+      ["Accompagnement technique des apprenants ; certificat Lead Tech obtenu en mars 2026."]],
+    ["tekbot","Mentor IT","Tekbot Robotics","2024 - 2025","Cotonou, Bénin","Bénévolat",
+      ["Coaching des équipes IT du Tekbot Robotics Challenge 2025.","Participation à BenRover24, rover martien conçu au Bénin.","Mentor de l'équipe First Lego League du LMJFGMK, 2e place nationale."]],
+    ["eroye","Chef de projet digital et IT","EROYE SAS","Depuis oct. 2024","Cotonou, Bénin","Entreprise",
+      ["Coordination des équipes informatiques et suivi du calendrier des projets majeurs.","Conseil en digitalisation des processus métier."]],
+    ["mtk","Fondateur","MTK, MedTech Innovation et SIKA Education","Depuis avr. 2024","Cotonou, Bénin","Entrepreneuriat",
+      ["MedTech Innovation : Dagbeninon, incubé à l'Academy 5 de Sèmè City.","SIKA Education : cartes Code Cauris, cursus IA Academy, kits d'électronique."]],
+    ["ego","Chef de projet IT, développeur et ingénieur d'exploitation","EGO Technologie","Avr. 2023 - mai 2024","Cotonou, Bénin","Entreprise",
+      ["Direction du service informatique et des projets de transformation numérique.","Supervision du développement, déploiement et maintenance, cybersécurité.","Formation des équipes en Python, R, data science et IA ; plateforme de calcul du coût du kWh par source d'énergie."]],
+    ["formateur","Enseignant formateur et ingénieur Data et IA","Sèmè City, AUF, ESGIS, ESGT, GBM-EPAC","Depuis 2023","Bénin","Vacations",
+      ["Formateur en data science et IA (Africa Tech Up Tour).","Maintenance informatique avancée (RESAOLAB) ; conception de programmes en IA, data et robotique."]],
+    ["techno229","Cofondateur et directeur informatique","Techno 229","Janv. 2021 - mars 2023","Abomey-Calavi, Bénin","Cofondation",
+      ["Stratégie des systèmes d'information et partenariats technologiques.","Programmes de formation en programmation, data science et IA ; encadrement des équipes techniques."]],
+    ["gbm","Assistant de recherche et chef de parc informatique","Génie biomédical, EPAC et laboratoire LETIA, Université d'Abomey-Calavi","Depuis sept. 2020","Abomey-Calavi, Bénin","Bénévolat",
+      ["R&D biomédicale : respirateur Health4life et surveillance des constantes vitales en temps réel.","Recherche en IA : transcription médicale pour accents ouest-africains, prédiction d'analyses biologiques.","Maintenance matérielle et réseau, appui aux enseignants d'informatique biomédicale."]],
   ];
-  H.sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
-  const HL = {}; H.forEach(([, items]) => items.forEach(([id, t]) => { if (id) HL[id] = t; }));
+  const EDU = [
+    ["2026","Diplôme inter-universitaire en e-Santé","USTTB, UFHB, UCAD, Université de Lomé, Fondation Pierre Fabre · 1re place au hackathon avec BAYA"],
+    ["2026","Deep Learning Indaba, Lagos","3e place au Prediction Game · éditions précédentes : Dakar 2024, Kigali 2025"],
+    ["2025","Deux communications à l'ICEHTMC 2025","transcription médicale, prédiction d'analyses biologiques"],
+    ["2022","Master professionnel, Système informatique et logiciel","ESTAG Saint Christophe · félicitations du jury · mémoire sur l'IA et la pneumonie"],
+    ["2019","Licence, Système informatique et logiciel","Université Les Cours Sonou"],
+  ];
+  const HL = {}; EXP.forEach(([id, t, o]) => (HL[id] = t + ", " + o));
   const SHORT = { ministere:"Ministère du Commerce intérieur", gbm:"Génie biomédical, EPAC", tournee:"Tournée des 77 communes", cotonou:"Cotonou AI Academy",
     epitech:"Epitech Bénin", ifri:"IFRI", tekbot:"Tekbot TRC 2025", mtk:"MTK", eroye:"EROYE SAS", ego:"EGO Technologie", techno229:"Techno 229" };
   const name = (id) => P[id] ? P[id].t : SHORT[id] || (HL[id] || id).split(",")[0];
@@ -522,10 +625,19 @@ html{scroll-behavior:smooth}
   });
 
   /* ---------- Parcours ---------- */
+  const xpBox = document.getElementById("xp-list");
+  EXP.forEach(([id, t, o, when, where, type, items, now]) => {
+    const a = document.createElement("article"); a.className = "sheet xp" + (now ? " now" : ""); a.id = "h-" + id;
+    a.innerHTML = `<div class="xp-dot" aria-hidden="true"></div>
+      <div class="xp-head"><div><h3>${t}</h3><div class="xp-org">${o}</div></div><span class="xp-type">${now ? "Poste actuel" : type}</span></div>
+      <div class="xp-meta mono"><span>${when}</span><span>${where}</span></div>
+      <ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul>`;
+    xpBox.appendChild(a);
+  });
   const hist = document.getElementById("history");
-  H.forEach(([year, items]) => {
+  EDU.forEach(([y, t, s]) => {
     const r = document.createElement("div"); r.className = "h-row";
-    r.innerHTML = `<span class="mono" style="padding-top:3px">${year}</span><ul>${items.map(([id, t, s, now]) => `<li${id ? ` id="h-${id}"` : ""}${now ? ' class="now"' : ""}><b>${t}</b>${s ? ` <span>· ${s}</span>` : ""}</li>`).join("")}</ul>`;
+    r.innerHTML = `<span class="mono" style="padding-top:3px">${y}</span><ul><li><b>${t}</b> <span>· ${s}</span></li></ul>`;
     hist.appendChild(r);
   });
 
@@ -538,7 +650,7 @@ html{scroll-behavior:smooth}
     rows.forEach((r) => r.setAttribute("aria-pressed", "false"));
     catBox.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.cat === "all"));
     document.querySelectorAll(".exam").forEach((e) => { e.classList.remove("dim", "lit"); e.hidden = false; });
-    document.querySelectorAll(".h-row li.lit").forEach((e) => e.classList.remove("lit"));
+    document.querySelectorAll(".xp.lit").forEach((e) => e.classList.remove("lit"));
     txt.textContent = "Tous les projets sont affichés."; reset.hidden = true;
   }
   catBox.addEventListener("click", (ev) => {
@@ -557,7 +669,7 @@ html{scroll-behavior:smooth}
     inHist.forEach((i) => document.getElementById("h-" + i)?.classList.add("lit"));
     txt.textContent = `Preuves de « ${r.dataset.label} » : ${ids.length ? ids.map(name).join(", ") : "usage quotidien"}.`;
     reset.hidden = false;
-    if (inExams.length || inHist.length) document.getElementById(inExams.length ? "examens" : "history").scrollIntoView({ block: "start" });
+    if (inExams.length || inHist.length) document.getElementById(inExams.length ? "examens" : "experience").scrollIntoView({ block: "start" });
   }));
   reset.addEventListener("click", clear);
 
@@ -565,6 +677,37 @@ html{scroll-behavior:smooth}
   btn.addEventListener("click", () => {
     const sel = () => { const r = document.createRange(); r.selectNodeContents(mail); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Sélectionnée"; };
     try { navigator.clipboard.writeText(mail.textContent).then(() => (btn.textContent = "Copiée"), sel); } catch (e) { sel(); }
+  });
+
+  /* ---------- Thème, menu, formulaire ---------- */
+  const root = document.documentElement;
+  try { const t = localStorage.getItem("bilan-theme"); if (t === "dark" || t === "light") root.dataset.theme = t; } catch (e) {}
+  document.getElementById("theme").addEventListener("click", () => {
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("bilan-theme", root.dataset.theme); } catch (e) {}
+  });
+  const menu = document.getElementById("menu"), menuBtn = document.getElementById("menu-btn");
+  menuBtn.addEventListener("click", () => { const o = menu.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); });
+  menu.addEventListener("click", (e) => { if (e.target.closest("a")) { menu.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+  const form = document.getElementById("msg"), note = document.getElementById("msg-note");
+  form.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const via = ev.submitter?.dataset.via || "mail";
+    const f = Object.fromEntries(new FormData(form));
+    let bad = null;
+    form.querySelectorAll("input,textarea").forEach((el) => { const ok = el.value.trim() && (el.type !== "email" || /\S+@\S+\.\S+/.test(el.value)); el.setAttribute("aria-invalid", !ok); if (!ok && !bad) bad = el; });
+    if (bad) { note.textContent = "Complétez les champs signalés : nom, e-mail valide, objet et message."; bad.focus(); return; }
+    const text = `${f.body.trim()}\n\n${f.name.trim()} (${f.email.trim()})`;
+    const url = via === "wa"
+      ? `https://wa.me/2290166431716?text=${encodeURIComponent(`${f.subject.trim()}\n\n${text}`)}`
+      : `mailto:mahuvivituribiok@gmail.com?subject=${encodeURIComponent(f.subject.trim())}&body=${encodeURIComponent(text)}`;
+    const a = document.createElement("a"); a.href = url; if (via === "wa") { a.target = "_blank"; a.rel = "noopener"; }
+    document.body.appendChild(a); a.click(); a.remove();
+    note.textContent = via === "wa"
+      ? "WhatsApp s'ouvre avec votre message. S'il ne s'ouvre pas, écrivez au +229 01 66 43 17 16."
+      : "Votre messagerie s'ouvre avec le message. Si rien ne se passe, écrivez à mahuvivituribiok@gmail.com.";
   });
 
   /* ---------- Scène 3D : réseau de neurones, ADN, bras robotique ---------- */
