@@ -4,62 +4,80 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bilan Turibio KEKE</title>
-<meta name="description" content="Portfolio de Mahuvivi Turibio KEKE présenté comme un bilan d'analyses : compétences mesurées, intervalles de référence et preuves.">
+<meta name="description" content="Portfolio de Mahuvivi Turibio KEKE, conseiller technique en intelligence artificielle : IA, robotique et biomédical présentés comme un bilan d'analyses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Martian+Mono:wght@400;600&display=swap">
 <style>
-/* Mise en page : une feuille de résultats de laboratoire. Bandeau d'identification, panels de paramètres
-   avec barre d'intervalle de référence et drapeau, conclusion du biologiste, examens complémentaires (projets),
-   antécédents (parcours). Couleurs tirées de la coloration de Giemsa : magenta pour les drapeaux, bleu de méthylène. */
+/* Mise en page : une feuille de résultats de laboratoire. Bandeau d'identification avec scène 3D (IA, biomédical,
+   robotique), panels de paramètres avec intervalle de référence et drapeau, conclusion, examens complémentaires
+   avec aperçus, antécédents. Couleurs de la coloration de Giemsa : magenta pour les drapeaux, bleu de méthylène. */
 :root{
   --paper:#F3F6F7; --sheet:#FFFFFF; --ink:#12212A; --muted:#566871; --rule:#D3DDE1;
-  --range:#E2ECF1; --methylene:#1E5C8A; --giemsa:#9C2E7B; --giemsa-soft:#F6E6F1; --focus:#1E5C8A;
+  --range:#E2ECF1; --methylene:#1E5C8A; --giemsa:#9C2E7B; --giemsa-soft:#F6E6F1; --focus:#1E5C8A; --stage:#E9F0F3;
   --f-display:"Familjen Grotesk","Arial Narrow",Arial,sans-serif;
   --f-body:"Atkinson Hyperlegible",Verdana,"Segoe UI",sans-serif;
   --f-mono:"Martian Mono",ui-monospace,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#0D151A; --sheet:#131E25; --ink:#E5EDF0; --muted:#94A6AE; --rule:#25343D;
-  --range:#1B2A33; --methylene:#71B1DE; --giemsa:#E487C6; --giemsa-soft:#3A1E31; --focus:#71B1DE; color-scheme:dark}}
+  --range:#1B2A33; --methylene:#71B1DE; --giemsa:#E487C6; --giemsa-soft:#3A1E31; --focus:#71B1DE; --stage:#0F1A20; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0D151A; --sheet:#131E25; --ink:#E5EDF0; --muted:#94A6AE; --rule:#25343D;
-  --range:#1B2A33; --methylene:#71B1DE; --giemsa:#E487C6; --giemsa-soft:#3A1E31; --focus:#71B1DE; color-scheme:dark}
+  --range:#1B2A33; --methylene:#71B1DE; --giemsa:#E487C6; --giemsa-soft:#3A1E31; --focus:#71B1DE; --stage:#0F1A20; color-scheme:dark}
 
 *{box-sizing:border-box}
 html,body{margin:0}
 img{max-width:100%}
+[hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
 a{color:var(--methylene);text-underline-offset:3px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px}
-.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:28px}
 .mono{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.02em}
 .label{font-family:var(--f-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
 h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
 h2{font-size:clamp(1.35rem,2.6vw,1.75rem)}
 p{margin:0}
-
-/* Feuille */
 .sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:4px}
 .sheet-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:12px 22px;border-bottom:1px solid var(--rule)}
 
-/* Bandeau d'identité */
-.id{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:24px 22px 22px;align-items:start}
-.id img{width:104px;height:128px;object-fit:cover;border-radius:3px;border:1px solid var(--rule);filter:saturate(.9)}
-.id h1{font-size:clamp(2rem,5.4vw,3.4rem);font-weight:700;letter-spacing:-.01em}
-.id .role{font-family:var(--f-display);font-weight:500;font-size:1.12rem;color:var(--methylene);margin-top:6px}
-.thesis{font-size:1.12rem;max-width:62ch;margin-top:14px}
-.fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--rule)}
+/* Bandeau d'identité + scène 3D */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border-bottom:1px solid var(--rule)}
+.id{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;padding:24px 22px;align-items:start;align-content:start}
+.id img{width:104px;height:128px;object-fit:cover;border-radius:3px;border:1px solid var(--rule)}
+.id h1{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:700;letter-spacing:-.01em}
+.post{margin-top:10px;display:grid;gap:4px}
+.post b{font-family:var(--f-display);font-weight:700;font-size:1.12rem;color:var(--methylene);line-height:1.25}
+.post span{font-size:.9rem;color:var(--muted)}
+.thesis{grid-column:1 / -1;font-size:1.1rem;max-width:58ch}
+.stage{position:relative;background:var(--stage);border-left:1px solid var(--rule);min-height:360px;display:grid;grid-template-rows:1fr auto;border-top-right-radius:4px}
+.stage{min-width:0;overflow:hidden}
+.stage canvas{display:block;width:100%;max-width:100%;height:100%;min-height:300px;min-width:0}
+.wrap > *{min-width:0}
+.stage .cap{position:absolute;left:18px;top:14px;display:grid;gap:2px;pointer-events:none}
+.stage .cap b{font-family:var(--f-display);font-size:1.25rem;font-weight:700}
+.stage .cap span{font-size:.86rem;color:var(--muted);max-width:30ch}
+.modes{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px 12px;border-top:1px solid var(--rule)}
+.modes button{font:inherit;font-size:.82rem;font-family:var(--f-mono);background:var(--sheet);color:var(--ink);border:1px solid var(--rule);border-radius:3px;padding:4px 10px;cursor:pointer}
+.modes button[aria-pressed="true"]{border-color:var(--giemsa);color:var(--giemsa)}
+.modes .auto{margin-left:auto;color:var(--muted)}
+.fields{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 .fields div{padding:12px 22px;border-right:1px solid var(--rule);min-width:0}
 .fields div:last-child{border-right:0}
 .fields b{display:block;font-weight:700;margin-top:2px}
-
-/* Synthèse */
 .summary{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:16px 22px;border-top:1px solid var(--rule);background:var(--giemsa-soft);border-radius:0 0 4px 4px}
 .summary .big{font-family:var(--f-display);font-weight:700;font-size:2.6rem;color:var(--giemsa);line-height:1;font-variant-numeric:tabular-nums}
 
-/* Panels de résultats */
+/* Chiffres clés */
+.keys{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
+.keys div{padding:16px 18px;border-right:1px solid var(--rule);display:grid;gap:4px;align-content:start}
+.keys div:last-child{border-right:0}
+.keys b{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--methylene);font-variant-numeric:tabular-nums}
+.keys span{font-size:.88rem;color:var(--muted)}
+
+/* Panels */
 .results-intro{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 30px;align-items:end}
 .legend{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;color:var(--muted);font-size:.86rem}
 .legend span{display:inline-flex;align-items:center;gap:6px}
@@ -67,11 +85,11 @@ p{margin:0}
 .sw.mk{width:3px;height:14px;background:var(--methylene)}
 .flag{font-family:var(--f-mono);font-weight:600;font-size:.7rem;color:var(--giemsa);border:1px solid var(--giemsa);border-radius:2px;padding:1px 5px;letter-spacing:.04em;white-space:nowrap}
 .panel{overflow:hidden}
-.panel-head{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(150px,1.3fr) 4.2rem 7.6rem minmax(0,1.5fr);gap:14px;align-items:end;padding:12px 22px 8px;border-bottom:1px solid var(--rule)}
+.panel-head,.row{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(150px,1.3fr) 4.2rem 7.6rem minmax(0,1.5fr);gap:14px}
+.panel-head{align-items:end;padding:12px 22px 8px;border-bottom:1px solid var(--rule)}
 .panel-head h3{font-size:1.08rem}
 .scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.62rem;color:var(--muted)}
-.row{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(150px,1.3fr) 4.2rem 7.6rem minmax(0,1.5fr);gap:14px;align-items:center;
-  padding:11px 22px;border-bottom:1px dashed var(--rule);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;color:inherit;font:inherit}
+.row{align-items:center;padding:11px 22px;border-bottom:1px dashed var(--rule);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;color:inherit;font:inherit}
 .row:last-child{border-bottom:0}
 .row:hover,.row[aria-pressed="true"]{background:var(--range)}
 .row .p{min-width:0}
@@ -93,27 +111,41 @@ p{margin:0}
 
 /* Examens complémentaires */
 .filterbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;min-height:34px}
-.filterbar button{font:inherit;font-size:.86rem;background:none;border:1px solid var(--rule);color:var(--ink);border-radius:3px;padding:4px 10px;cursor:pointer}
-.filterbar button:hover{border-color:var(--methylene)}
+.filterbar button,.cats button{font:inherit;font-size:.86rem;background:none;border:1px solid var(--rule);color:var(--ink);border-radius:3px;padding:4px 10px;cursor:pointer}
+.filterbar button:hover,.cats button:hover{border-color:var(--methylene)}
+.cats{display:flex;flex-wrap:wrap;gap:6px}
+.cats button[aria-pressed="true"]{border-color:var(--giemsa);color:var(--giemsa)}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.exam{display:flex;flex-direction:column;gap:10px;padding:16px 18px;transition:opacity .2s,border-color .2s}
+.exam{display:flex;flex-direction:column;overflow:hidden;transition:opacity .2s,border-color .2s,transform .2s}
+.exam:hover{transform:translateY(-2px)}
 .exam.dim{opacity:.32}
 .exam.lit{border-color:var(--giemsa)}
+.exam .shot{aspect-ratio:16/10;max-width:100%;background:var(--stage);border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+.exam .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .5s}
+.exam:hover .shot img{transform:scale(1.04)}
+.exam .shot svg{width:100%;height:100%;display:block}
+.exam .shot .tag{position:absolute;right:8px;bottom:8px;font-family:var(--f-mono);font-size:.6rem;background:var(--sheet);color:var(--muted);border:1px solid var(--rule);padding:1px 6px;border-radius:2px}
+.exam .body{display:flex;flex-direction:column;gap:10px;padding:14px 18px 16px;flex:1}
 .exam .top{display:flex;justify-content:space-between;gap:10px}
 .exam h3{font-size:1.18rem}
-.exam p{font-size:.94rem;color:var(--ink)}
+.exam p{font-size:.94rem}
 .exam .badge{align-self:flex-start;font-family:var(--f-mono);font-size:.66rem;color:var(--giemsa);background:var(--giemsa-soft);padding:2px 7px;border-radius:2px}
 .exam .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
 .exam .links{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.88rem}
 
-/* Antécédents */
+/* Antécédents, communautés */
 .history{padding:8px 22px}
 .h-row{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:18px;padding:12px 0;border-bottom:1px dashed var(--rule)}
 .h-row:last-child{border-bottom:0}
 .h-row ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
 .h-row li b{font-weight:700}
 .h-row li span{color:var(--muted)}
+.h-row li.now b{color:var(--giemsa)}
 .h-row li.lit{background:var(--giemsa-soft);outline:4px solid var(--giemsa-soft);border-radius:2px}
+.extra{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.extra > div{padding:18px 22px;border-right:1px solid var(--rule);display:grid;gap:8px;align-content:start}
+.extra > div:last-child{border-right:0}
+.extra ul{margin:0;padding-left:18px;display:grid;gap:4px}
 
 /* Contact */
 .contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;padding:24px 22px;align-items:start}
@@ -123,34 +155,44 @@ p{margin:0}
 .copy{font:inherit;font-size:.8rem;margin-left:8px;background:none;border:1px solid var(--rule);color:var(--ink);border-radius:3px;padding:1px 8px;cursor:pointer}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;color:var(--muted)}
 
-@media (max-width:860px){
+@media (max-width:900px){
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .stage{border-left:0;border-top:1px solid var(--rule);border-radius:0;min-height:320px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .keys{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .keys div:nth-child(3){border-right:0}
+  .keys div:nth-child(-n+3){border-bottom:1px solid var(--rule)}
   .fields{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fields div:nth-child(2){border-right:0}
   .fields div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
-  .panel-head{grid-template-columns:minmax(0,1fr) minmax(130px,.9fr) 4.2rem}
+  .panel-head,.row{grid-template-columns:minmax(0,1fr) minmax(130px,.9fr) 4.2rem}
   .panel-head .hide-m{display:none}
-  .row{grid-template-columns:minmax(0,1fr) minmax(130px,.9fr) 4.2rem;row-gap:6px}
+  .row{row-gap:6px}
   .row .flagcell{grid-column:1}
   .row .proofs{grid-column:2 / -1}
   .conclusion,.contact{grid-template-columns:1fr}
+  .extra{grid-template-columns:1fr}
+  .extra > div{border-right:0;border-bottom:1px solid var(--rule)}
+  .extra > div:last-child{border-bottom:0}
 }
 @media (max-width:560px){
   .grid{grid-template-columns:1fr}
   .id{grid-template-columns:1fr}
   .id img{width:84px;height:104px}
+  .keys{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .keys div{border-right:0!important;border-bottom:1px solid var(--rule)}
   .fields{grid-template-columns:1fr}
   .fields div{border-right:0;border-bottom:1px solid var(--rule)}
   .fields div:last-child{border-bottom:0}
   .panel-head{grid-template-columns:minmax(0,1fr)}
   .panel-head .scale{display:none}
-  .panel-head > :not(:first-child){display:none}
   .row{grid-template-columns:minmax(0,1fr) 3.6rem}
   .row .p{grid-column:1 / -1}
   .row .track{grid-column:1}
   .row .flagcell,.row .proofs{grid-column:1 / -1}
   .h-row{grid-template-columns:1fr;gap:6px}
   .summary{grid-template-columns:1fr}
+  .modes .auto{margin-left:0}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 html{scroll-behavior:smooth}
@@ -166,24 +208,49 @@ html{scroll-behavior:smooth}
       <span class="label">Bilan de compétences · Cotonou, Bénin</span>
       <span class="label">Dossier n° MTK-2026-11 · édité le 6 novembre 2026</span>
     </div>
-    <div class="id">
-      <img src="data:image/jpeg;base64,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" alt="Portrait de Mahuvivi Turibio KEKE">
-      <div>
-        <h1 id="nom">Mahuvivi Turibio KEKE</h1>
-        <div class="role">Ingénieur en IA appliquée à la santé, formateur et fondateur de MTK</div>
-        <p class="thesis">Je construis des outils d'IA qui fonctionnent là où le réseau, les données et les spécialistes manquent, et j'apprends aux autres à s'en servir.</p>
+    <div class="hero">
+      <div class="id">
+        <img src="data:image/jpeg;base64,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" alt="Portrait de Mahuvivi Turibio KEKE">
+        <div>
+          <h1 id="nom">Mahuvivi Turibio KEKE</h1>
+          <div class="post">
+            <b>Conseiller technique à l'intelligence artificielle</b>
+            <span>Ministère du Commerce intérieur, en charge de la Formalisation de l'Économie, République du Bénin</span>
+            <span>Ingénieur en IA appliquée à la santé, formateur, fondateur de MTK</span>
+          </div>
+        </div>
+        <p class="thesis">Je construis des outils d'IA, de robotique et de santé numérique qui fonctionnent là où le réseau, les données et les spécialistes manquent, et j'apprends aux autres à s'en servir.</p>
+      </div>
+      <div class="stage">
+        <canvas id="scene" aria-label="Scène 3D animée : réseau de neurones, double hélice d'ADN et bras robotique" role="img"></canvas>
+        <div class="cap" aria-live="polite"><b id="mode-title">Intelligence artificielle</b><span id="mode-text">LLM, voix et modèles prédictifs pour la santé</span></div>
+        <div class="modes" role="group" aria-label="Choisir la forme affichée">
+          <button type="button" data-mode="0" aria-pressed="true">IA</button>
+          <button type="button" data-mode="1" aria-pressed="false">Biomédical</button>
+          <button type="button" data-mode="2" aria-pressed="false">Robotique</button>
+          <button type="button" class="auto" id="auto" aria-pressed="true">Défilement auto</button>
+        </div>
       </div>
     </div>
     <div class="fields">
-      <div><span class="label">Base</span><b>Cotonou, Bénin</b></div>
+      <div><span class="label">Fonction actuelle</span><b>Conseiller technique IA, ministère</b></div>
       <div><span class="label">Pratique</span><b>5 ans en projets IT, 3 ans en IA santé</b></div>
       <div><span class="label">Langues</span><b>Français, anglais, fongbé, tori-gbé</b></div>
-      <div><span class="label">Ouvert à</span><b>Missions, recherche, formation</b></div>
+      <div><span class="label">Domaines</span><b>IA, robotique, biomédical, éducation</b></div>
     </div>
     <div class="summary">
       <div class="big" id="nb-hi">0</div>
-      <p><b>paramètres au-dessus de l'intervalle de référence</b> sur <span id="nb-tot">0</span> mesurés. Les points forts se concentrent sur l'IA embarquée hors ligne, la voix, les applications web sans réseau et la formation à grande échelle.</p>
+      <p><b>paramètres au-dessus de l'intervalle de référence</b> sur <span id="nb-tot">0</span> mesurés. Points forts : IA embarquée hors ligne, voix, applications sans réseau, robotique éducative et formation à grande échelle.</p>
     </div>
+  </section>
+
+  <!-- Chiffres clés -->
+  <section class="sheet keys" aria-label="Chiffres clés">
+    <div><b>77</b><span>communes couvertes par la tournée IA et robotique</span></div>
+    <div><b>3</b><span>éditions du Deep Learning Indaba (Dakar, Kigali, Lagos)</span></div>
+    <div><b>176</b><span>leçons d'IA de la 6e au post-bac (IA Academy)</span></div>
+    <div><b>1re</b><span>place au Hackathon e-Santé 2026 avec BAYA</span></div>
+    <div><b>2</b><span>communications scientifiques à l'ICEHTMC 2025</span></div>
   </section>
 
   <!-- Résultats -->
@@ -210,8 +277,8 @@ html{scroll-behavior:smooth}
       <h2 id="t-conclusion">Un profil de bâtisseur et de passeur</h2>
       <div>
         <p>Le bilan montre un ingénieur qui va du terrain au prototype déployé : il cerne un besoin réel (un interne qui révise sans connexion, une clinique sans laboratoire complet, un patient qui ne lit pas le français), choisit le modèle le plus simple qui tient la route, puis livre une application utilisable sur un téléphone ordinaire.</p>
-        <p>À cela s'ajoute une capacité rare : transmettre. Cours à l'IFRI, tournée de formation dans les 77 communes du Bénin, activités débranchées pour les écoles sans électricité, mentorat d'équipes de robotique. Les outils construits sont pensés pour être repris par d'autres.</p>
-        <p>Axes de progression : publications à comité de lecture et passage à l'échelle de données de santé réelles, en partenariat avec des structures sanitaires.</p>
+        <p>Trois terrains se croisent : l'IA, la robotique et le génie biomédical, où il contribue depuis 2020 à la recherche du département de Génie biomédical de l'EPAC. S'y ajoute une capacité rare : transmettre, des écoles sans électricité jusqu'à l'administration publique, où il conseille désormais le ministère du Commerce intérieur sur l'intelligence artificielle.</p>
+        <p>Axes de progression : publications à comité de lecture et passage à l'échelle sur des données de santé réelles, avec des structures sanitaires partenaires.</p>
         <div class="sign">Mahuvivi Turibio KEKE</div>
       </div>
     </div>
@@ -222,12 +289,13 @@ html{scroll-behavior:smooth}
     <div class="results-intro">
       <div>
         <span class="label">Examens complémentaires</span>
-        <h2 id="t-examens">Les preuves, projet par projet</h2>
+        <h2 id="t-examens">Les projets, avec aperçu</h2>
       </div>
-      <div class="filterbar" aria-live="polite">
-        <span id="filter-text" style="color:var(--muted);font-size:.9rem">Tous les projets sont affichés.</span>
-        <button id="reset" type="button" hidden>Tout afficher</button>
-      </div>
+      <div class="cats" role="group" aria-label="Filtrer par domaine" id="cats"></div>
+    </div>
+    <div class="filterbar" aria-live="polite">
+      <span id="filter-text" style="color:var(--muted);font-size:.9rem">Tous les projets sont affichés.</span>
+      <button id="reset" type="button" hidden>Tout afficher</button>
     </div>
     <div class="grid" id="exams"></div>
   </section>
@@ -239,13 +307,49 @@ html{scroll-behavior:smooth}
     <div class="history" id="history"></div>
   </section>
 
+  <!-- Informations utiles -->
+  <section class="sheet" aria-label="Informations utiles">
+    <div class="sheet-head"><span class="label">Informations complémentaires</span><span class="label">Certifications, communautés, engagements</span></div>
+    <div class="extra">
+      <div>
+        <h3>Certifications</h3>
+        <ul>
+          <li>Lead Tech, Digital Valley, Epitech Bénin (2026)</li>
+          <li>Diplôme inter-universitaire en e-Santé (2026)</li>
+          <li>Data Science et IA, Africa Tech Up Tour (2024)</li>
+          <li>École d'été sur l'IA (EEIA), Fondation Vallet (2023)</li>
+          <li>AgriTech, TITA by MTN Bénin (2023)</li>
+          <li>Gouvernance, infrastructure et sécurité de l'Internet, ISOC (2022)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Communautés</h3>
+        <ul>
+          <li>ISOC Bénin et FGI Bénin</li>
+          <li>iSheero AI</li>
+          <li>Benin Tech Hub</li>
+          <li>Tekbot Robotics et BenRover</li>
+          <li>Deep Learning Indaba</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Engagements</h3>
+        <ul>
+          <li><b>Child in Tech</b> : littératie numérique pour les enfants, en priorité les filles en milieu rural</li>
+          <li><b>Young in AI</b> : sensibilisation à l'IA dans les 77 communes</li>
+          <li><b>Safer Internet Day Bénin</b> 2024 et 2025</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="sheet" aria-labelledby="t-contact">
     <div class="sheet-head"><span class="label">Prescripteur</span><span class="label">Vous</span></div>
     <div class="contact">
       <div>
         <h2 id="t-contact">Demander un échange</h2>
-        <p style="margin-top:10px;max-width:52ch">Projet d'IA en santé ou en éducation, formation d'équipes, collaboration de recherche : écrivez-moi, je réponds rapidement, en français ou en anglais.</p>
+        <p style="margin-top:10px;max-width:52ch">Projet d'IA en santé, en éducation ou pour l'administration, formation d'équipes, robotique éducative, collaboration de recherche : écrivez-moi, je réponds en français ou en anglais.</p>
       </div>
       <dl>
         <dt>E-mail</dt><dd><span id="mail">mahuvivituribiok@gmail.com</span><button class="copy" type="button" id="copy-mail">Copier</button></dd>
@@ -262,70 +366,87 @@ html{scroll-behavior:smooth}
   </footer>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (() => {
-  /* Projets et expériences qui servent de preuves */
+  /* ---------- Projets (preuves) ---------- */
   const P = {
-    pediades:{t:"PédiaDES",k:"Santé · LLM",y:"2026",d:"Assistant de révision pour les internes en pédiatrie : discussion, quiz et conversation vocale ancrés sur leurs propres cours. La version Libre fait tourner des LLM open source dans le navigateur, sans compte ni réseau.",tags:["Gemini","llama.cpp","Qwen","Whisper","Piper","PWA","Android"],links:[["Démo","https://pediades.vercel.app"],["Version Libre","https://pediades-libre.vercel.app"]]},
-    paluwatch:{t:"PaluWatch AI",k:"Santé publique · prévision",y:"2026",d:"Aide à la décision qui anticipe les pics de paludisme au Bénin à partir de données climatiques et sanitaires : tableau de bord, modèle Random Forest de démonstration sur données simulées et dossier de projet complet.",tags:["Next.js","Random Forest","Épidémiologie"],links:[["Démo","https://paluwatch-ai.vercel.app"],["Code","https://github.com/turibiok/paluwatch-ai"]]},
-    baya:{t:"BAYA",k:"Santé maternelle",y:"2026",badge:"1re place, Hackathon e-Santé 2026",d:"Suivi de grossesse connecté : bracelet et patch, score de risque par IA, assistant en langues locales, suivi sans Internet par application, portail soignants et USSD.",tags:["IA","Capteurs PPG","USSD","FHIR / HL7"],links:[["Projet","https://turibiok.github.io/Baya/#solution"],["Code","https://github.com/turibiok/Baya"]]},
-    asr:{t:"Transcription médicale, accents africains",k:"Voix · recherche",y:"2024-2026",d:"Corpus médical enregistré par des locuteurs béninois et affinage de Whisper et NeMo, comparés à Dragon Medical One sur le taux d'erreur, la latence et le bruit. Communication à l'ICEHTMC 2025.",tags:["Whisper","NeMo","Corpus","WER"],links:[["Modèle","https://github.com/turibiok/Transcription_medical_accent_africain"],["Collecte","https://collecte-audio-pionners.vercel.app"]]},
-    biotests:{t:"Analyses à paramètres limités",k:"ML clinique · recherche",y:"2024-2025",d:"Prédire des résultats d'analyses manquants à partir de quelques paramètres, pour les structures sans laboratoire complet. Random Forest, XGBoost et réseaux de neurones sur MIMIC. Communication à l'ICEHTMC 2025.",tags:["XGBoost","MIMIC","RMSE, R²"],links:[["Code","https://github.com/turibiok/Prediction-of-Biomedical-Test-Results-from-Limited-Patient-Parameters"]]},
-    pneumonie:{t:"Diagnostic de la pneumonie",k:"Vision · mémoire de master",y:"2022",d:"Classification de radiographies thoraciques par réseau convolutif, avec des cartes Grad-CAM qui montrent au clinicien les zones sur lesquelles le modèle s'appuie.",tags:["CNN","PyTorch","Grad-CAM"],links:[]},
-    dagbeninon:{t:"Dagbeninon",k:"Startup e-santé",y:"2026",badge:"Incubé à l'Academy 5 de Sèmè City",d:"Les résultats d'analyses biomédicales expliqués dans les langues nationales, pour que chaque patient comprenne son bilan.",tags:["Langues nationales","e-Santé"],links:[]},
-    iaacademy:{t:"IA Academy",k:"Éducation · hors ligne",y:"2026",d:"Cursus d'intelligence artificielle de la 6e au post-bac : 6 niveaux, 42 modules, 176 leçons, activités débranchées et application hors ligne (PWA, APK Android, bureau).",tags:["Pédagogie","PWA","Capacitor"],links:[]},
-    codecauris:{t:"Code Cauris, cartes SIKA",k:"Jeu débranché",y:"2026",d:"Jeu de cartes pour apprendre à coder sans écran ni électricité (Scratch, algorithmique, Python, Arduino, C, C++), prolongé par des paquets IA et électronique solaire.",tags:["Algorithmique","Arduino","SIKA Education"],links:[]},
-    vision:{t:"Vision AI",k:"Assistant scolaire",y:"2026",d:"Assistant réalisé à la Cotonou AI Academy : analyse d'un devoir, coaching personnalisé et suivi de la progression de l'élève.",tags:["IA générative","EdTech"],links:[["Démo","https://turibiok.github.io/Vision-AI_Cotonou_AI_Academy/"]]},
-    linguabox:{t:"LinguaBox",k:"Langues · hors ligne",y:"2026",d:"Anglais de A1 à C2 pour francophones, centré sur quinze minutes de conversation orale par jour, avec une reconnaissance vocale embarquée qui n'envoie pas l'audio sur Internet.",tags:["Whisper.cpp","React","Tauri"],links:[]},
-    tech10:{t:"Tech10",k:"Plateforme",y:"2026",d:"Annuaire des formations et événements tech au Bénin par public, avec inscription, paiement mobile money et billets QR signés.",tags:["Next.js","PostgreSQL","Prisma"],links:[["Démo","https://tech10-eight.vercel.app"],["Code","https://github.com/turibiok/Tech10"]]},
-    indabax:{t:"Application IndabaX Bénin",k:"Événement",y:"2026",d:"Programme, participants et rôles attribués par l'administration, avec un simple classeur Google Sheet comme base de données.",tags:["React","Express","Google Sheets"],links:[["Démo","https://indabax-benin.onrender.com/"],["Code","https://github.com/turibiok/INDABAX"]]},
-    souverainete:{t:"Nos données, notre souveraineté",k:"Gouvernance des données",y:"2026",d:"Support de la communication du FGI Bénin et d'ISOC Bénin sur la vie privée et la souveraineté des données à l'ère de l'IA.",tags:["ISOC","Vie privée"],links:[["Présentation","https://nos-donnees-notre-souverainete.vercel.app"]]},
+    pediades:{t:"PédiaDES",c:"ia",k:"Santé · LLM",y:"2026",img:"apercus/pediades.jpg",d:"Assistant de révision pour les internes en pédiatrie : discussion, quiz et conversation vocale ancrés sur leurs propres cours. La version Libre fait tourner des LLM open source dans le navigateur, sans compte ni réseau.",tags:["Gemini","llama.cpp","Qwen","Whisper","PWA","Android"],links:[["Démo","https://pediades.vercel.app"],["Version Libre","https://pediades-libre.vercel.app"]]},
+    paluwatch:{t:"PaluWatch AI",c:"ia",k:"Santé publique · prévision",y:"2026",img:"apercus/paluwatch.jpg",d:"Aide à la décision qui anticipe les pics de paludisme au Bénin à partir de données climatiques et sanitaires : tableau de bord, carte des risques, alertes et modèle Random Forest de démonstration sur données simulées.",tags:["Next.js","Random Forest","Épidémiologie"],links:[["Démo","https://paluwatch-ai.vercel.app"],["Code","https://github.com/turibiok/paluwatch-ai"]]},
+    baya:{t:"BAYA",c:"bio",k:"Santé maternelle · objets connectés",y:"2026",img:"apercus/baya.jpg",badge:"1re place, Hackathon e-Santé 2026",d:"Suivi de grossesse connecté : bracelet et patch, score de risque par IA, assistant en langues locales, suivi sans Internet par application, portail soignants et USSD.",tags:["IA","Capteurs PPG","USSD","FHIR / HL7"],links:[["Projet","https://turibiok.github.io/Baya/#solution"],["Code","https://github.com/turibiok/Baya"]]},
+    health4life:{t:"Respirateur Health4life",c:"bio",k:"Génie biomédical · R&D",y:"depuis 2020",motif:"bio",d:"Contribution à la recherche et au développement d'un respirateur au département de Génie biomédical de l'EPAC, Université d'Abomey-Calavi.",tags:["Électronique","Dispositif médical"],links:[]},
+    vitals:{t:"Surveillance des constantes vitales",c:"bio",k:"Génie biomédical · temps réel",y:"depuis 2020",motif:"bio",d:"Dispositif de suivi des constantes vitales en temps réel développé au département de Génie biomédical de l'EPAC.",tags:["Capteurs","Temps réel"],links:[]},
+    asr:{t:"Transcription médicale, accents africains",c:"ia",k:"Voix · recherche",y:"2024-2026",motif:"voix",d:"Corpus médical enregistré par des locuteurs béninois et affinage de Whisper et NeMo, comparés à Dragon Medical One sur le taux d'erreur, la latence et le bruit. Communication à l'ICEHTMC 2025.",tags:["Whisper","NeMo","Corpus","WER"],links:[["Modèle","https://github.com/turibiok/Transcription_medical_accent_africain"]]},
+    biotests:{t:"Analyses à paramètres limités",c:"bio",k:"ML clinique · recherche",y:"2024-2025",motif:"ml",d:"Prédire des résultats d'analyses manquants à partir de quelques paramètres, pour les structures sans laboratoire complet. Random Forest, XGBoost et réseaux de neurones sur MIMIC. Communication à l'ICEHTMC 2025.",tags:["XGBoost","MIMIC","RMSE, R²"],links:[["Code","https://github.com/turibiok/Prediction-of-Biomedical-Test-Results-from-Limited-Patient-Parameters"]]},
+    pneumonie:{t:"Diagnostic de la pneumonie",c:"bio",k:"Vision · mémoire de master",y:"2022",motif:"ml",d:"Classification de radiographies thoraciques par réseau convolutif, avec des cartes Grad-CAM qui montrent au clinicien les zones sur lesquelles le modèle s'appuie.",tags:["CNN","PyTorch","Grad-CAM"],links:[]},
+    dagbeninon:{t:"Dagbeninon",c:"bio",k:"Startup e-santé",y:"2026",motif:"voix",badge:"Incubé à l'Academy 5 de Sèmè City",d:"Les résultats d'analyses biomédicales expliqués dans les langues nationales, pour que chaque patient comprenne son bilan.",tags:["Langues nationales","e-Santé"],links:[]},
+    benrover:{t:"BenRover24",c:"robot",k:"Robotique · navigation autonome",y:"2024",motif:"robot",d:"Rover martien conçu de zéro au Bénin avec Tekbot Robotics, de janvier à novembre 2024 : navigation autonome et vision embarquée.",tags:["ROS","Navigation","Vision"],links:[["Site","https://benrover.tekbot.io/"],["Code","https://github.com/BenRover-24"]]},
+    trc:{t:"TRC 2025",c:"robot",k:"Compétition · Afrique de l'Ouest",y:"2025",motif:"robot",badge:"Mentor IT des équipes",d:"Tekbot Robotics Challenge, compétition ouest-africaine de robotique : coaching des équipes IT de la compétition.",tags:["Robotique","Compétition"],links:[["Site officiel","https://trc.tekbot.io/"]]},
+    fll:{t:"First Lego League",c:"robot",k:"Robotique éducative",y:"2024",motif:"robot",badge:"2e place nationale",d:"Mentor et formateur de l'équipe du Lycée Militaire des Jeunes Filles Général Mathieu Kérékou (LMJFGMK).",tags:["LEGO","Programmation"],links:[]},
+    iaacademy:{t:"IA Academy",c:"edu",k:"Éducation · hors ligne",y:"2026",motif:"edu",d:"Cursus d'intelligence artificielle de la 6e au post-bac : 6 niveaux, 42 modules, 176 leçons, activités débranchées et application hors ligne (PWA, APK Android, bureau).",tags:["Pédagogie","PWA","Capacitor"],links:[]},
+    codecauris:{t:"Code Cauris, cartes SIKA",c:"edu",k:"Jeu débranché",y:"2026",motif:"edu",d:"Jeu de cartes pour apprendre à coder sans écran ni électricité (Scratch, algorithmique, Python, Arduino, C, C++), prolongé par des paquets IA et électronique solaire.",tags:["Algorithmique","Arduino","SIKA Education"],links:[]},
+    vision:{t:"Vision AI",c:"edu",k:"Assistant scolaire",y:"2026",img:"apercus/vision.jpg",d:"Assistant réalisé à la Cotonou AI Academy : photo d'un devoir, explication des notions et coaching de l'élève, avec suivi de la progression.",tags:["IA générative","EdTech"],links:[["Démo","https://turibiok.github.io/Vision-AI_Cotonou_AI_Academy/"]]},
+    linguabox:{t:"LinguaBox",c:"edu",k:"Langues · hors ligne",y:"2026",motif:"voix",d:"Anglais de A1 à C2 pour francophones, centré sur quinze minutes de conversation orale par jour, avec une reconnaissance vocale embarquée qui n'envoie pas l'audio sur Internet.",tags:["Whisper.cpp","React","Tauri"],links:[]},
+    tech10:{t:"Tech10",c:"plat",k:"Plateforme",y:"2026",motif:"edu",d:"Annuaire des formations et événements tech au Bénin par public, avec inscription, paiement mobile money et billets QR signés.",tags:["Next.js","PostgreSQL","Prisma"],links:[["Code","https://github.com/turibiok/Tech10"]]},
+    indabax:{t:"Application IndabaX Bénin",c:"plat",k:"Événement",y:"2026",motif:"edu",d:"Programme, participants et rôles attribués par l'administration, avec un simple classeur Google Sheet comme base de données.",tags:["React","Express","Google Sheets"],links:[["Démo","https://indabax-benin.onrender.com/"],["Code","https://github.com/turibiok/INDABAX"]]},
+    souverainete:{t:"Nos données, notre souveraineté",c:"plat",k:"Gouvernance des données",y:"2026",img:"apercus/souverainete.jpg",d:"Support de la communication du FGI Bénin et d'ISOC Bénin sur la vie privée et la souveraineté des données à l'ère de l'IA.",tags:["ISOC","Vie privée"],links:[["Présentation","https://nos-donnees-notre-souverainete.vercel.app"]]},
   };
-  /* Parcours : chaque entrée peut servir de preuve (id) */
+  const CATS = [["all","Tous"],["ia","IA"],["bio","Biomédical"],["robot","Robotique"],["edu","Éducation"],["plat","Plateformes"]];
+
+  /* ---------- Parcours ---------- */
   const H = [
     ["2026",[
+      ["ministere","Conseiller technique à l'intelligence artificielle, ministère du Commerce intérieur, en charge de la Formalisation de l'Économie","nommé en Conseil des ministres le 4 novembre 2026",true],
       ["tournee","Formateur-consultant IA et robotique, Sèmè City","tournée des 77 communes du Bénin, depuis avril"],
-      ["cotonou","Formateur, Cotonou AI Academy","Mairie de Cotonou, août"],
-      [null,"Diplôme inter-universitaire en e-Santé","USTTB, UFHB, UCAD, Université de Lomé, Fondation Pierre Fabre"],
-      [null,"1re place, Hackathon e-Santé · 3e place, Prediction Game","DIU e-Santé · Deep Learning Indaba, Lagos"],
-      [null,"Certificat Lead Tech","Digital Valley, Epitech Bénin"]]],
+      ["cotonou","Formateur IA et robotique, Cotonou AI Academy","Mairie de Cotonou, août"],
+      [null,"1re place, Hackathon e-Santé · 3e place, Prediction Game","DIU e-Santé · Deep Learning Indaba, Lagos"]]],
     ["2025",[
-      ["ifri","Enseignant, IFRI, Université d'Abomey-Calavi","depuis 2025"],
+      ["ifri","Enseignant en maintenance des appareils électroniques, IFRI, Université d'Abomey-Calavi","depuis 2025"],
       ["epitech","Sensei (coach technique), Digital Valley, Epitech Bénin",""],
-      ["tekbot","Mentor IT, Tekbot Robotics Challenge 2025 · équipe FIRST LEGO League","2e place nationale"],
-      [null,"Deux communications à l'ICEHTMC 2025","transcription médicale, prédiction d'analyses"],
-      [null,"Deep Learning Indaba, Kigali",""]]],
+      ["tekbot","Mentor IT, Tekbot Robotics Challenge 2025",""],
+      [null,"Deux communications à l'ICEHTMC 2025 · Deep Learning Indaba, Kigali",""]]],
     ["2024",[
       ["mtk","Fondateur, MTK","pôles MedTech Innovation et SIKA Education, depuis avril"],
       ["eroye","Chef de projet digital et IT, EROYE SAS","depuis octobre"],
-      [null,"Deep Learning Indaba, Dakar · certificat Data science et IA, ATUT",""]]],
-    ["2023-2024",[["ego","Chef de projet IT, développeur et ingénieur d'exploitation, EGO Technologie","direction du service informatique, formation des équipes"]]],
-    ["2021-2023",[["techno229","Cofondateur et directeur informatique, Techno 229","systèmes d'information, partenariats, programmes de formation"]]],
-    ["2022",[[null,"Master professionnel, Système informatique et logiciel","ESTAG Saint Christophe · mémoire sur l'IA et la pneumonie"]]],
+      [null,"BenRover24 avec Tekbot Robotics · First Lego League, 2e place nationale · Deep Learning Indaba, Dakar",""]]],
+    ["2023",[
+      ["ego","Chef de projet IT, développeur et ingénieur d'exploitation, EGO Technologie","avril 2023 à mai 2024"],
+      ["formateur","Enseignant formateur et ingénieur Data/IA","Sèmè City, AUF, ESGIS, ESGT, GBM-EPAC, depuis 2023"]]],
+    ["2021",[["techno229","Cofondateur et directeur informatique, Techno 229","janvier 2021 à mars 2023"]]],
+    ["2020",[["gbm","Assistant de recherche et chef de parc informatique bénévole, Génie biomédical, EPAC","depuis septembre 2020 : respirateur Health4life, surveillance des constantes vitales"]]],
+    ["2022",[[null,"Master professionnel, Système informatique et logiciel, ESTAG","félicitations du jury · mémoire sur l'IA et la pneumonie"]]],
     ["2019",[[null,"Licence, Système informatique et logiciel","Université Les Cours Sonou"]]],
   ];
-  const HL = {}; H.forEach(([,items]) => items.forEach(([id,t]) => { if (id) HL[id] = t; }));
-  const name = (id) => P[id] ? P[id].t : (HL[id] || id).split(",")[0];
+  H.sort((a, b) => parseInt(b[0]) - parseInt(a[0]));
+  const HL = {}; H.forEach(([, items]) => items.forEach(([id, t]) => { if (id) HL[id] = t; }));
+  const SHORT = { ministere:"Ministère du Commerce intérieur", gbm:"Génie biomédical, EPAC", tournee:"Tournée des 77 communes", cotonou:"Cotonou AI Academy",
+    epitech:"Epitech Bénin", ifri:"IFRI", tekbot:"Tekbot TRC 2025", mtk:"MTK", eroye:"EROYE SAS", ego:"EGO Technologie", techno229:"Techno 229" };
+  const name = (id) => P[id] ? P[id].t : SHORT[id] || (HL[id] || id).split(",")[0];
 
-  /* Paramètres mesurés : [libellé, précision, niveau /5, preuves] */
+  /* ---------- Paramètres ---------- */
   const PANELS = [
     ["IA générative et LLM",[
       ["LLM appliqués","prompting, réponses ancrées sur des documents, assistants",4.5,["pediades","vision","baya"]],
       ["LLM embarqués hors ligne","llama.cpp, Qwen, LFM, choix du modèle selon l'appareil",4.5,["pediades","linguabox"]],
-      ["Voix","reconnaissance et synthèse : Whisper, NeMo, Piper",4.5,["asr","pediades","linguabox"]]]],
+      ["Voix","reconnaissance et synthèse : Whisper, NeMo, Piper",4.5,["asr","pediades","linguabox"]],
+      ["IA pour l'action publique","conseil, cadrage de projets, gouvernance des données",4,["ministere","souverainete"]]]],
     ["Apprentissage automatique",[
       ["Modèles tabulaires et prévision","Random Forest, XGBoost, régression",4,["biotests","paluwatch"]],
       ["Vision médicale et explicabilité","CNN, Grad-CAM",3.5,["pneumonie"]],
       ["Évaluation, biais et équité","WER, RMSE, analyse d'erreur par groupe",3.5,["asr","biotests"]]]],
+    ["Biomédical et robotique",[
+      ["Dispositifs biomédicaux","R&D, maintenance, constantes vitales",4,["health4life","vitals","gbm"]],
+      ["Objets connectés de santé","capteurs PPG, interopérabilité FHIR / HL7",3.5,["baya"]],
+      ["Robotique","navigation autonome, compétitions, ROS",4,["benrover","trc"]],
+      ["Électronique et maintenance","enseignement, circuits, Arduino",4,["ifri","codecauris"]]]],
     ["Ingénierie logicielle",[
       ["Applications web hors ligne","PWA, Next.js, React, service workers",4.5,["pediades","iaacademy","paluwatch","tech10"]],
       ["Mobile et bureau","Android, Capacitor, Tauri",4,["pediades","iaacademy","linguabox"]],
-      ["Données et serveur","PostgreSQL, Prisma, Express, Google Sheets",3.5,["tech10","indabax"]],
-      ["Santé interopérable","FHIR / HL7, USSD",3,["baya"]]]],
+      ["Données et serveur","PostgreSQL, Prisma, Express, Google Sheets",3.5,["tech10","indabax"]]]],
     ["Transmission",[
       ["Formation IA et robotique à grande échelle","ateliers, clubs, classes inversées",5,["tournee","cotonou","epitech"]],
       ["Pédagogie sans écran","activités débranchées, jeux de cartes",5,["codecauris","iaacademy"]],
-      ["Enseignement supérieur et mentorat","cours, encadrement d'équipes",4,["ifri","tekbot"]]]],
+      ["Enseignement supérieur et mentorat","cours, encadrement d'équipes",4,["ifri","tekbot","fll"]]]],
     ["Pilotage",[
       ["Gestion de projets IT","coordination d'équipes, transformation numérique",4.5,["ego","techno229","eroye"]],
       ["Entrepreneuriat santé et éducation","création, incubation, prix",4,["mtk","dagbeninon","baya"]],
@@ -337,7 +458,6 @@ html{scroll-behavior:smooth}
   ];
   const REF_HI = 3.5, fmt = (v) => String(v).replace(".", ",");
 
-  /* Rendu des panels */
   const panels = document.getElementById("panels");
   let total = 0, hi = 0;
   PANELS.forEach(([title, rows]) => {
@@ -361,38 +481,63 @@ html{scroll-behavior:smooth}
   document.getElementById("nb-hi").textContent = hi;
   document.getElementById("nb-tot").textContent = total;
 
-  /* Rendu des projets */
+  /* ---------- Motifs d'aperçu pour les projets sans capture ---------- */
+  function motif(kind, seed) {
+    const r = (i) => { const x = Math.sin(seed * 97 + i * 13.7) * 10000; return x - Math.floor(x); };
+    let g = "";
+    if (kind === "voix") { for (let i = 0; i < 48; i++) { const h = 8 + r(i) * 70 * Math.sin(i / 47 * Math.PI); g += `<rect x="${12 + i * 6.6}" y="${100 - h / 2}" width="3.4" height="${h}" rx="1.5" fill="var(--methylene)" opacity="${.45 + r(i + 50) * .55}"/>`; } }
+    else if (kind === "ml") { for (let i = 0; i < 70; i++) { const x = 20 + r(i) * 300, y = 175 - (x - 20) * .45 - r(i + 9) * 60; g += `<circle cx="${x}" cy="${y}" r="3" fill="${r(i + 3) > .7 ? "var(--giemsa)" : "var(--methylene)"}" opacity=".8"/>`; } g += `<line x1="20" y1="178" x2="330" y2="38" stroke="var(--giemsa)" stroke-width="2" stroke-dasharray="6 5"/>`; }
+    else if (kind === "bio") { let d = "M0 110"; for (let x = 0; x <= 340; x += 4) { const k = x % 85; const y = k > 40 && k < 46 ? 110 - (k - 40) * 14 : k >= 46 && k < 52 ? 26 + (k - 46) * 22 : k >= 52 && k < 56 ? 158 - (k - 52) * 12 : 110 + Math.sin(x / 9) * 3; d += ` L${x} ${y.toFixed(1)}`; } g = `<path d="${d}" fill="none" stroke="var(--giemsa)" stroke-width="2.4" stroke-linejoin="round"/>` + [40, 80, 120, 160].map((y) => `<line x1="0" x2="340" y1="${y}" y2="${y}" stroke="var(--rule)"/>`).join(""); }
+    else if (kind === "robot") { const tooth = (cx, cy, R, n) => { let d = ""; for (let i = 0; i < n * 2; i++) { const a = i / (n * 2) * Math.PI * 2, rr = i % 2 ? R : R * .82; d += (i ? "L" : "M") + (cx + Math.cos(a) * rr).toFixed(1) + " " + (cy + Math.sin(a) * rr).toFixed(1); } return d + "Z"; }; g = `<path d="${tooth(130, 105, 62, 12)}" fill="none" stroke="var(--methylene)" stroke-width="2.4"/><circle cx="130" cy="105" r="18" fill="none" stroke="var(--methylene)" stroke-width="2.4"/><path d="${tooth(228, 72, 38, 9)}" fill="none" stroke="var(--giemsa)" stroke-width="2.4"/><circle cx="228" cy="72" r="11" fill="none" stroke="var(--giemsa)" stroke-width="2.4"/>`; }
+    else { for (let i = 0; i < 4; i++) for (let j = 0; j < 3; j++) g += `<rect x="${34 + i * 72}" y="${26 + j * 54}" width="58" height="42" rx="3" fill="none" stroke="${(i + j) % 3 ? "var(--methylene)" : "var(--giemsa)"}" stroke-width="2" opacity="${.5 + r(i * 3 + j) * .5}"/>`; }
+    return `<svg viewBox="0 0 340 212" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${g}</svg>`;
+  }
+
+  /* ---------- Projets ---------- */
   const exams = document.getElementById("exams");
-  const usedBy = {}; PANELS.forEach(([, rows]) => rows.forEach(([l,,, pr]) => pr.forEach((p) => (usedBy[p] = usedBy[p] || []).push(l))));
-  Object.entries(P).forEach(([id, p]) => {
+  const usedBy = {}; PANELS.forEach(([, rows]) => rows.forEach(([l, , , pr]) => pr.forEach((p) => (usedBy[p] = usedBy[p] || []).push(l))));
+  Object.entries(P).forEach(([id, p], n) => {
     const a = document.createElement("article");
-    a.className = "sheet exam"; a.id = "x-" + id;
-    a.innerHTML = `<div class="top"><span class="label">${p.k}</span><span class="label">${p.y}</span></div>
+    a.className = "sheet exam"; a.id = "x-" + id; a.dataset.cat = p.c;
+    const shot = p.img
+      ? `<img src="${p.img}" alt="Aperçu de ${p.t}" loading="lazy" onerror="this.replaceWith(document.createRange().createContextualFragment(this.dataset.f))" data-f='${motif("edu", n).replace(/'/g, "&#39;")}'><span class="tag">aperçu réel</span>`
+      : motif(p.motif, n + 1) + `<span class="tag">${p.motif === "bio" ? "dispositif" : p.motif === "robot" ? "robotique" : "illustration"}</span>`;
+    a.innerHTML = `<div class="shot">${shot}</div><div class="body"><div class="top"><span class="label">${p.k}</span><span class="label">${p.y}</span></div>
       <h3>${p.t}</h3>${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
       <p>${p.d}</p>
       ${usedBy[id] ? `<p class="mono" style="color:var(--muted)">Prouve : ${usedBy[id].join(" · ")}</p>` : ""}
       <div class="tags">${p.tags.map((t) => `<span class="chip">${t}</span>`).join("")}</div>
-      ${p.links.length ? `<div class="links">${p.links.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`).join("")}</div>` : ""}`;
+      ${p.links.length ? `<div class="links">${p.links.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener">${l} ↗</a>`).join("")}</div>` : ""}</div>`;
     exams.appendChild(a);
   });
 
-  /* Rendu du parcours */
+  /* ---------- Parcours ---------- */
   const hist = document.getElementById("history");
   H.forEach(([year, items]) => {
     const r = document.createElement("div"); r.className = "h-row";
-    r.innerHTML = `<span class="mono" style="padding-top:3px">${year}</span><ul>${items.map(([id, t, s]) => `<li${id ? ` id="h-${id}"` : ""}><b>${t}</b>${s ? ` <span>· ${s}</span>` : ""}</li>`).join("")}</ul>`;
+    r.innerHTML = `<span class="mono" style="padding-top:3px">${year}</span><ul>${items.map(([id, t, s, now]) => `<li${id ? ` id="h-${id}"` : ""}${now ? ' class="now"' : ""}><b>${t}</b>${s ? ` <span>· ${s}</span>` : ""}</li>`).join("")}</ul>`;
     hist.appendChild(r);
   });
 
-  /* Filtre : une ligne de résultat éclaire ses preuves */
+  /* ---------- Filtres ---------- */
   const rows = [...document.querySelectorAll(".row")];
   const txt = document.getElementById("filter-text"), reset = document.getElementById("reset");
+  const catBox = document.getElementById("cats");
+  CATS.forEach(([k, l]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = l; b.dataset.cat = k; b.setAttribute("aria-pressed", k === "all"); catBox.appendChild(b); });
   function clear() {
     rows.forEach((r) => r.setAttribute("aria-pressed", "false"));
-    document.querySelectorAll(".exam").forEach((e) => e.classList.remove("dim", "lit"));
+    catBox.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.cat === "all"));
+    document.querySelectorAll(".exam").forEach((e) => { e.classList.remove("dim", "lit"); e.hidden = false; });
     document.querySelectorAll(".h-row li.lit").forEach((e) => e.classList.remove("lit"));
     txt.textContent = "Tous les projets sont affichés."; reset.hidden = true;
   }
+  catBox.addEventListener("click", (ev) => {
+    const b = ev.target.closest("button"); if (!b) return; clear();
+    if (b.dataset.cat === "all") return;
+    catBox.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    let n = 0; document.querySelectorAll(".exam").forEach((e) => { e.hidden = e.dataset.cat !== b.dataset.cat; if (!e.hidden) n++; });
+    txt.textContent = `${n} projet${n > 1 ? "s" : ""} en ${b.textContent.toLowerCase()}.`; reset.hidden = false;
+  });
   rows.forEach((r) => r.addEventListener("click", () => {
     const on = r.getAttribute("aria-pressed") === "true"; clear(); if (on) return;
     r.setAttribute("aria-pressed", "true");
@@ -402,17 +547,127 @@ html{scroll-behavior:smooth}
     inHist.forEach((i) => document.getElementById("h-" + i)?.classList.add("lit"));
     txt.textContent = `Preuves de « ${r.dataset.label} » : ${ids.length ? ids.map(name).join(", ") : "usage quotidien"}.`;
     reset.hidden = false;
-    const first = inExams.length ? document.getElementById("x-" + inExams[0]) : inHist.length ? document.getElementById("h-" + inHist[0]) : null;
-    if (first) document.getElementById(inExams.length ? "examens" : "history").scrollIntoView({ block: "start" });
+    if (inExams.length || inHist.length) document.getElementById(inExams.length ? "examens" : "history").scrollIntoView({ block: "start" });
   }));
   reset.addEventListener("click", clear);
 
-  /* Copie de l'adresse */
   const btn = document.getElementById("copy-mail"), mail = document.getElementById("mail");
   btn.addEventListener("click", () => {
     const sel = () => { const r = document.createRange(); r.selectNodeContents(mail); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Sélectionnée"; };
     try { navigator.clipboard.writeText(mail.textContent).then(() => (btn.textContent = "Copiée"), sel); } catch (e) { sel(); }
   });
+
+  /* ---------- Scène 3D : réseau de neurones, ADN, bras robotique ---------- */
+  const MODES = [
+    ["Intelligence artificielle", "LLM, voix et modèles prédictifs pour la santé"],
+    ["Biomédical", "Analyses, dispositifs et données cliniques"],
+    ["Robotique", "Navigation autonome, compétitions et kits éducatifs"],
+  ];
+  const canvas = document.getElementById("scene");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const modeBtns = [...document.querySelectorAll(".modes [data-mode]")], autoBtn = document.getElementById("auto");
+  let mode = 0, auto = !reduce;
+  autoBtn.setAttribute("aria-pressed", auto);
+  if (!window.THREE) { canvas.parentElement.querySelector(".modes").hidden = true; return; }
+
+  const N = 2600, rnd = Math.random, V = THREE.Vector3;
+  const lerp = (a, b, t) => new V().lerpVectors(a, b, t);
+  const jitter = (v, s) => v.add(new V((rnd() - .5) * s, (rnd() - .5) * s, (rnd() - .5) * s));
+  function neural() {
+    const L = [5, 8, 8, 5], nodes = L.map((n, li) => Array.from({ length: n }, (_, k) => {
+      const a = k / n * Math.PI * 2; const R = .55 + n * .1; return new V(-2.1 + li * 1.4, Math.cos(a) * R, Math.sin(a) * R); }));
+    const out = [];
+    for (let i = 0; i < N; i++) {
+      if (i < N * .35) { const l = nodes[i % 4], n = l[Math.floor(rnd() * l.length)]; out.push(jitter(n.clone(), .16)); }
+      else { const li = Math.floor(rnd() * 3), a = nodes[li][Math.floor(rnd() * nodes[li].length)], b = nodes[li + 1][Math.floor(rnd() * nodes[li + 1].length)]; out.push(jitter(lerp(a, b, rnd()), .02)); }
+    }
+    return out;
+  }
+  function dna() {
+    const out = [], turns = 2.2, R = .95;
+    for (let i = 0; i < N; i++) {
+      if (i < N * .62) { const t = rnd(), a = t * turns * Math.PI * 2 + (i % 2 ? Math.PI : 0); out.push(jitter(new V(Math.cos(a) * R, -2.2 + t * 4.4, Math.sin(a) * R), .07)); }
+      else { const k = Math.floor(rnd() * 26), t = (k + .5) / 26, a = t * turns * Math.PI * 2, s = rnd();
+        const p = new V(Math.cos(a) * R, -2.2 + t * 4.4, Math.sin(a) * R), q = new V(Math.cos(a + Math.PI) * R, p.y, Math.sin(a + Math.PI) * R); out.push(jitter(lerp(p, q, s), .03)); }
+    }
+    return out;
+  }
+  function robot() {
+    const J = [new V(-.6, -1.75, 0), new V(-.6, -.35, 0), new V(.65, .75, 0), new V(1.75, .25, 0)];
+    const segs = [[J[0], J[1], .2], [J[1], J[2], .17], [J[2], J[3], .14], [J[3], new V(2.35, .62, .14), .05], [J[3], new V(2.35, -.05, -.14), .05]];
+    const out = [];
+    for (let i = 0; i < N; i++) {
+      const u = rnd();
+      if (u < .2) { const a = rnd() * Math.PI * 2, rr = Math.sqrt(rnd()) * 1.05; out.push(new V(-.6 + Math.cos(a) * rr, -2.05 + (rnd() < .5 ? 0 : .22), Math.sin(a) * rr)); }
+      else if (u < .38) { const j = J[Math.floor(rnd() * 4)], d = new V(rnd() - .5, rnd() - .5, rnd() - .5).normalize().multiplyScalar(.27); out.push(j.clone().add(d)); }
+      else { const [a, b, r0] = segs[Math.floor(rnd() * segs.length)], t = rnd(), c = lerp(a, b, t), dir = new V().subVectors(b, a).normalize();
+        const n1 = new V(0, 0, 1).cross(dir).normalize(); if (n1.lengthSq() < .01) n1.set(1, 0, 0); const n2 = new V().crossVectors(dir, n1); const th = rnd() * Math.PI * 2;
+        out.push(c.add(n1.multiplyScalar(Math.cos(th) * r0)).add(n2.multiplyScalar(Math.sin(th) * r0))); }
+    }
+    return out;
+  }
+  const SHAPES = [neural(), dna(), robot()];
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(42, 1, .1, 50);
+  cam.position.set(0, 0, 7.4);
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(N * 3), from = new Float32Array(N * 3), col = new Float32Array(N * 3);
+  SHAPES[0].forEach((v, i) => { pos.set([v.x, v.y, v.z], i * 3); });
+  from.set(pos);
+  geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+  const mat = new THREE.PointsMaterial({ size: .05, vertexColors: true, transparent: true, opacity: .92, depthWrite: false });
+  const pts = new THREE.Points(geo, mat), group = new THREE.Group();
+  group.add(pts); scene.add(group);
+
+  function paint() {
+    const cs = getComputedStyle(document.documentElement);
+    const a = new THREE.Color(cs.getPropertyValue("--methylene").trim()), b = new THREE.Color(cs.getPropertyValue("--giemsa").trim());
+    const shape = SHAPES[mode];
+    for (let i = 0; i < N; i++) { const t = Math.min(1, Math.max(0, (shape[i].y + 2.2) / 4.4)); const c = a.clone().lerp(b, t * .85 + (i % 7 === 0 ? .15 : 0)); col.set([c.r, c.g, c.b], i * 3); }
+    geo.attributes.color.needsUpdate = true;
+  }
+  function resize() {
+    const w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); cam.aspect = w / h; cam.position.z = w / h < .9 ? 9.4 : 7.4; cam.updateProjectionMatrix();
+  }
+  let t0 = 0, morphing = false, last = performance.now(), cycle = 0;
+  function setMode(m, user) {
+    if (user) { auto = false; autoBtn.setAttribute("aria-pressed", "false"); }
+    mode = m; from.set(pos); t0 = performance.now(); morphing = !reduce;
+    if (reduce) { SHAPES[m].forEach((v, i) => pos.set([v.x, v.y, v.z], i * 3)); geo.attributes.position.needsUpdate = true; }
+    modeBtns.forEach((b) => b.setAttribute("aria-pressed", +b.dataset.mode === m));
+    document.getElementById("mode-title").textContent = MODES[m][0];
+    document.getElementById("mode-text").textContent = MODES[m][1];
+    paint(); cycle = 0; if (reduce) renderer.render(scene, cam);
+  }
+  modeBtns.forEach((b) => b.addEventListener("click", () => setMode(+b.dataset.mode, true)));
+  autoBtn.addEventListener("click", () => { auto = !auto; autoBtn.setAttribute("aria-pressed", auto); cycle = 0; });
+  let tx = 0, ty = 0;
+  canvas.addEventListener("pointermove", (e) => { const r = canvas.getBoundingClientRect(); tx = ((e.clientX - r.left) / r.width - .5) * .6; ty = ((e.clientY - r.top) / r.height - .5) * .4; });
+  canvas.addEventListener("pointerleave", () => { tx = 0; ty = 0; });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { paint(); if (reduce) renderer.render(scene, cam); });
+  new MutationObserver(() => { paint(); if (reduce) renderer.render(scene, cam); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  new ResizeObserver(() => { resize(); if (reduce) renderer.render(scene, cam); }).observe(canvas);
+  resize(); paint();
+
+  const ease = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  function frame(now) {
+    const dt = Math.min(64, now - last); last = now;
+    if (morphing) {
+      const k = Math.min(1, (now - t0) / 1700), e = ease(k), target = SHAPES[mode];
+      for (let i = 0; i < N; i++) { const j = i * 3, v = target[i], d = Math.sin((i % 97) / 97 * Math.PI) * .9 * (1 - Math.abs(2 * e - 1));
+        pos[j] = from[j] + (v.x - from[j]) * e; pos[j + 1] = from[j + 1] + (v.y - from[j + 1]) * e + d * .25; pos[j + 2] = from[j + 2] + (v.z - from[j + 2]) * e; }
+      geo.attributes.position.needsUpdate = true; if (k >= 1) morphing = false;
+    }
+    if (auto) { cycle += dt; if (cycle > 6500) setMode((mode + 1) % 3, false); }
+    group.rotation.y += dt * .00025; group.rotation.x += (ty - group.rotation.x) * .05; group.rotation.z += (-tx * .3 - group.rotation.z) * .05;
+    renderer.render(scene, cam);
+    requestAnimationFrame(frame);
+  }
+  if (reduce) renderer.render(scene, cam); else requestAnimationFrame(frame);
 })();
 </script>
 
